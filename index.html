@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Precificação</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Título da primeira parte: Cálculo do Valor Hora -->
+        <h1>CÁLCULO DO VALOR HORA</h1>
+
+        <!-- Linha com os títulos das colunas (Pretensão, Custos, Horas, etc.) -->
+        <div class="row">
+            <div class="column">Pretensão renda mensal</div>
+            <div class="column">Custos fixos</div>
+            <div class="column">Custos variáveis</div>
+            <div class="column">Horas trabalhadas/mês</div>
+            <div class="column">Valor total da hora</div>
+            <div class="column">Margem de lucro</div>
+        </div>
+
+        <!-- Linha onde colocamos os campos para o usuário digitar os valores -->
+        <div class="row">
+            <input class="campo" id="pretensao" type="number" placeholder="R$ 10.000,00">
+            <input class="campo" id="custosFixos" type="number" placeholder="R$ 4.000,00">
+            <input class="campo" id="custosVariaveis" type="number" placeholder="R$ 2.000,00">
+            <input class="campo" id="horasTrabalhadas" type="number" value="120">
+            <input class="campo" id="valorHora" type="number" disabled>
+            <input class="campo" id="margemLucro" type="number" value="40" disabled>
+        </div>
+
+        <!-- Título da segunda parte: Cálculo do Valor do Projeto -->
+        <h1>CÁLCULO DO VALOR DO PROJETO</h1>
+
+        <!-- Linha com os títulos das colunas do projeto -->
+        <div class="row">
+            <div class="column">Valor da hora</div>
+            <div class="column">Horas diárias para execução do projeto</div>
+            <div class="column">Duração do projeto em dias</div>
+            <div class="column">Valor total do projeto</div>
+        </div>
+
+        <!-- Linha onde o usuário digita as horas e dias para calcular o valor do projeto -->
+        <div class="row">
+            <input class="campo" id="valorHoraProjeto" type="number" disabled>
+            <input class="campo" id="horasDiarias" type="number" value="3">
+            <input class="campo" id="duracaoProjeto" type="number" value="4">
+            <input class="campo" id="valorTotalProjeto" type="number" disabled>
+        </div>
+
+        <!-- Rodapé com um título e uma frase -->
+        <div class="footer">
+            <h2>CALCULADORA DE PRECIFICAÇÃO</h2>
+            <p>conectando inspiração, impulsionando resultados</p>
+        </div>
+    </div>
+
+    <!-- Link para o arquivo JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+/* Faz com que todos os elementos comecem sem espaçamento */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Define a fonte e a cor de fundo da página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fffb00;
+}
+
+/* Define a largura da área principal e centraliza ela */
+.container {
+    width: 90%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+/* Estilo do título grande (h1) */
+h1 {
+    background-color: #fffb00;
+    color: black;
+    padding: 10px;
+    margin-bottom: 5px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Estilo das linhas (row) que contêm os campos */
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+/* Estilo das colunas com texto dentro das linhas */
+.column {
+    flex: 1;
+    background-color: #7f00ff; /* Roxo */
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    margin-right: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Estilo dos campos de entrada onde o usuário digita */
+.campo {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    border: 2px solid #7f00ff; /* Borda roxa */
+    border-radius: 5px;
+    margin-right: 5px;
+    font-size: 14px;
+    background-color: #fff; /* Fundo branco */
+    color: black;
+}
+
+/* Quando você clica no campo, ele fica com uma borda diferente */
+.campo:focus {
+    outline: none;
+    border: 2px solid #ffa500; /* Mudar cor da borda ao focar (laranja) */
+}
+
+/* Estilo para campos desativados (que não podem ser editados) */
+input[disabled] {
+    background-color: #e0e0e0; /* Cor de fundo mais clara */
+}
+
+/* Estilo do rodapé */
+.footer {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fffb00;
+    color: black;
+    font-weight: bold;
+}
+
+/* Estilo do texto pequeno no rodapé */
+.footer p {
+    font-size: 12px;
+}

@@ -1,116 +1,80 @@
-console.log("O script JavaScript está funcionando!");
+// Função para salvar os dados no cache (localStorage)
+function salvarNoCache(id, valor) {
+    localStorage.setItem(id, valor);
+}
 
-document.addEventListener("DOMContentLoaded", function () {
-    const pretensao = document.getElementById("pretensao");
-    const custosFixos = document.getElementById("custosFixos");
-    const custosVariaveis = document.getElementById("custosVariaveis");
-    const horasTrabalhadas = document.getElementById("horasTrabalhadas");
-    const valorHora = document.getElementById("valorHora");
-    const margemLucro = document.getElementById("margemLucro");
-    const horasDiarias = document.getElementById("horasDiarias");
-    const duracaoProjeto = document.getElementById("duracaoProjeto");
-    const valorTotalProjeto = document.getElementById("valorTotalProjeto");
+// Função para carregar os dados salvos no cache
+function carregarDoCache() {
+    const ids = ['pretensao', 'custosFixos', 'custosVariaveis', 'horasTrabalhadas', 'horasDiarias', 'duracaoProjeto'];
+    ids.forEach(id => {
+        const valor = localStorage.getItem(id);
+        if (valor) {
+            document.getElementById(id).value = valor; // Carrega o valor numérico sem formatação
+        }
+    });
+    calcularValores(); // Recalcula os valores ao carregar o cache
+}
 
-    // Função para salvar os dados no LocalStorage
-    function salvarNoLocalStorage() {
-        localStorage.setItem("pretensao", pretensao.value);
-        localStorage.setItem("custosFixos", custosFixos.value);
-        localStorage.setItem("custosVariaveis", custosVariaveis.value);
-        localStorage.setItem("horasTrabalhadas", horasTrabalhadas.value);
-        localStorage.setItem("horasDiarias", horasDiarias.value);
-        localStorage.setItem("duracaoProjeto", duracaoProjeto.value);
-        localStorage.setItem("margemLucro", margemLucro.value); // Salvando a margem de lucro
+// Função que realiza os cálculos automáticos
+function calcularValores() {
+    const pretensao = parseFloat(document.getElementById('pretensao').value) || 0;
+    const custosFixos = parseFloat(document.getElementById('custosFixos').value) || 0;
+    const custosVariaveis = parseFloat(document.getElementById('custosVariaveis').value) || 0;
+    const horasTrabalhadas = parseFloat(document.getElementById('horasTrabalhadas').value) || 1; // Prevenção de divisão por 0
+    const horasDiarias = parseFloat(document.getElementById('horasDiarias').value) || 0;
+    const duracaoProjeto = parseFloat(document.getElementById('duracaoProjeto').value) || 0;
+
+    // Cálculo do valor total da hora
+    const valorHoraTotal = (pretensao + custosFixos + custosVariaveis) / horasTrabalhadas;
+    document.getElementById('valorHora').value = valorHoraTotal.toFixed(2); // Usar valor numérico
+
+    // Cálculo da margem de lucro
+    const margemLucro = ((pretensao - (custosFixos + custosVariaveis)) / pretensao) * 100;
+    document.getElementById('margemLucro').value = margemLucro.toFixed(2) + '%';
+
+    // Cálculo do valor total do projeto
+    const valorTotalProjeto = valorHoraTotal * horasDiarias * duracaoProjeto;
+    document.getElementById('valorTotalProjeto').value = valorTotalProjeto.toFixed(2); // Usar valor numérico
+}
+
+// Função para formatar os campos em tempo real
+function formatarCampoMoeda(event) {
+    const campo = event.target;
+    const valorNumerico = parseFloat(campo.value.replace(/[^\d]/g, '')) / 100 || 0;
+    salvarNoCache(campo.id, valorNumerico); // Salvar valor numérico sem formatação
+    campo.value = valorNumerico.toFixed(2); // Exibe o valor numérico formatado
+    calcularValores(); // Atualiza os cálculos
+}
+
+// Função para campos de número normais
+function formatarCampoNumero(event) {
+    const campo = event.target;
+    const valorNumerico = parseFloat(campo.value) || 0;
+    salvarNoCache(campo.id, valorNumerico);
+    calcularValores(); // Atualiza os cálculos
+}
+
+// Função para mover para o próximo campo
+function moverParaProximoCampo(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault(); // Impede o envio de um formulário se houver
+        const nextField = event.target.nextElementSibling;
+        if (nextField) {
+            nextField.focus(); // Foca no próximo campo
+        }
     }
+}
 
-    // Função para carregar os dados do LocalStorage
-    function carregarDoLocalStorage() {
-        if (localStorage.getItem("pretensao")) {
-            pretensao.value = localStorage.getItem("pretensao");
-        }
-        if (localStorage.getItem("custosFixos")) {
-            custosFixos.value = localStorage.getItem("custosFixos");
-        }
-        if (localStorage.getItem("custosVariaveis")) {
-            custosVariaveis.value = localStorage.getItem("custosVariaveis");
-        }
-        if (localStorage.getItem("horasTrabalhadas")) {
-            horasTrabalhadas.value = localStorage.getItem("horasTrabalhadas");
-        }
-        if (localStorage.getItem("horasDiarias")) {
-            horasDiarias.value = localStorage.getItem("horasDiarias");
-        }
-        if (localStorage.getItem("duracaoProjeto")) {
-            duracaoProjeto.value = localStorage.getItem("duracaoProjeto");
-        }
-        if (localStorage.getItem("margemLucro")) {
-            margemLucro.value = localStorage.getItem("margemLucro"); // Carregar margem de lucro
-        }
+// Carregar os valores do cache ao abrir a página
+window.onload = function () {
+    carregarDoCache();
 
-        calcularValorHora();
-        calcularValorProjeto();
-    }
-
-    // Função para calcular o valor da hora e a margem de lucro
-    function calcularValorHora() {
-        const rendaMensal = parseFloat(pretensao.value.replace("R$", "").replace(".", "").replace(",", ".")) || 0;
-        const custosF = parseFloat(custosFixos.value.replace("R$", "").replace(".", "").replace(",", ".")) || 0;
-        const custosV = parseFloat(custosVariaveis.value.replace("R$", "").replace(".", "").replace(",", ".")) || 0;
-        const horasMes = parseFloat(horasTrabalhadas.value) || 0;
-
-        const totalCustos = custosF + custosV;
-        
-        // Calcula o valor da hora sem margem de lucro
-        const valorSemMargem = horasMes > 0 ? (rendaMensal + totalCustos) / horasMes : 0;
-
-        // Calcula a margem de lucro com base no valor da hora desejado e nos custos totais
-        const margemCalculada = (rendaMensal / (totalCustos + rendaMensal)) * 100;
-
-        valorHora.value = `R$ ${valorSemMargem.toFixed(2).replace(".", ",")}`; // Formatar como moeda
-        margemLucro.value = `${margemCalculada.toFixed(2)}%`; // Mostrar a margem calculada
-
-        salvarNoLocalStorage();
-    }
-
-    // Função para calcular o valor do projeto
-    function calcularValorProjeto() {
-        const valorHoraNum = parseFloat(valorHora.value.replace("R$", "").replace(".", "").replace(",", ".")) || 0;
-        const horasDia = parseFloat(horasDiarias.value) || 0;
-        const duracao = parseFloat(duracaoProjeto.value) || 0;
-
-        const totalProjeto = valorHoraNum * horasDia * duracao;
-        valorTotalProjeto.value = `R$ ${totalProjeto.toFixed(2).replace(".", ",")}`; // Formatar como moeda
-
-        salvarNoLocalStorage();
-    }
-
-    // Função para formatar os valores como moeda
-    function formatarMoeda(e) {
-        let value = e.target.value;
-
-        // Remove todos os caracteres que não sejam números ou vírgulas
-        value = value.replace(/\D/g, "");
-
-        // Converte o valor em formato de moeda (R$)
-        value = (value / 100).toFixed(2) + ""; // divide por 100 para ajustar os centavos
-        value = value.replace(".", ","); // substitui ponto por vírgula
-        value = value.replace(/\B(?=(\d{3})+(?!\d))/g, "."); // adiciona ponto como separador de milhar
-
-        e.target.value = `R$ ${value}`;
-    }
-
-    // Adicionar eventos para formatar o valor de moeda
-    pretensao.addEventListener("input", formatarMoeda);
-    custosFixos.addEventListener("input", formatarMoeda);
-    custosVariaveis.addEventListener("input", formatarMoeda);
-
-    // Adicionar eventos para recalcular os valores ao alterar as entradas
-    pretensao.addEventListener("input", calcularValorHora);
-    custosFixos.addEventListener("input", calcularValorHora);
-    custosVariaveis.addEventListener("input", calcularValorHora);
-    horasTrabalhadas.addEventListener("input", calcularValorHora);
-    horasDiarias.addEventListener("input", calcularValorProjeto);
-    duracaoProjeto.addEventListener("input", calcularValorProjeto);
-
-    // Carregar dados ao iniciar a página
-    carregarDoLocalStorage();
-});
+    // Aplicar formatação e salvar valores ao alterar os campos
+    const campos = ['pretensao', 'custosFixos', 'custosVariaveis', 'horasTrabalhadas', 'horasDiarias', 'duracaoProjeto'];
+    campos.forEach(campoId => {
+        const campo = document.getElementById(campoId);
+        campo.addEventListener('input', formatarCampoMoeda);
+        campo.addEventListener('blur', formatarCampoMoeda); // Formata ao sair do campo
+        campo.addEventListener('keydown', moverParaProximoCampo); // Muda de campo ao pressionar Enter
+    });
+};

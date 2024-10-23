@@ -35,17 +35,6 @@ body {
     margin-bottom: 0px;
     width: 100%;
 }
-.section-header h2 {
-    font-size: 22px;
-    text-align: center;
-    color: #ffffff;
-    background-color: #d7f301;
-    padding: 10px;
-    border-radius: 0px;
-    border: 2px solid #d7f301;
-    margin-bottom: 0px;
-    width: 100%;
-}
 
 /* Estilo para as linhas do formulário */
 .form-row {
@@ -65,18 +54,40 @@ body {
     text-align: center;
 }
 
-.form-group:last-child {
-    margin-right: 0;
-}
-
 /* Estilo dos rótulos */
 label {
     padding: 10px;
     width: 100%;
     background-color: #7f00ff;
-    font-size: 10px;
+    font-size: 12px;
     color: #e0e0e0;
     margin-bottom: 0px;
+}
+
+/* Estilo para o ícone de informação */
+.info-icon {
+    display: inline-block;
+    margin-left: 10px; /* Espaço entre a label e o ícone */
+    cursor: pointer;
+    color: #ffffff; /* Cor do ícone */
+    font-weight: bold; /* Tamanho do ícone */
+    position: relative; /* Para posicionar a tooltip */
+}
+
+/* Estilo para a tooltip */
+.info-icon:hover::after {
+    content: attr(title); /* Exibe o texto do atributo title */
+    position: absolute;
+    bottom: 30px; /* Posiciona a tooltip acima do ícone */
+    left: 1rem;
+    transform: translateX(-50%); /* Centraliza a tooltip */
+    background-color: rgba(111, 69, 224, 0.9); /* Fundo branco com transparência */
+    border: 1px solid #ccc; /* Borda da tooltip */
+    padding: 5px;
+    border-radius: 4px; /* Borda arredondada */
+    white-space: nowrap; /* Impede que o texto quebre */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Sombra para dar destaque */
+    z-index: 10; /* Garante que a tooltip fique acima de outros elementos */
 }
 
 /* Estilo dos campos de entrada */
@@ -103,11 +114,7 @@ input[disabled] {
     background-color: #e0e0e0;
 }
 
-
-
 /* Media queries para telas menores */
-
-/* Até 992px, o layout mantém-se como no desktop */
 @media (max-width: 992px) {
     .form-row {
         flex-wrap: wrap; /* Começará a quebrar linhas a partir de 992px */
@@ -118,13 +125,12 @@ input[disabled] {
     }
 }
 
-/* A partir de 768px, o layout será mobile-friendly */
 @media (max-width: 768px) {
     .form-group {
         flex: 0 0 100%; /* Os campos ficam em uma única coluna em telas menores que 768px */
     }
 
-    .section-header h1, .section-header h2 {
+    .section-header h1 {
         font-size: 18px;
         padding: 8px;
     }
@@ -138,12 +144,12 @@ input[disabled] {
         font-size: 12px;
     }
 }
+
 /* Estilo da imagem no rodapé */
-/* Rodapé com imagem centralizada */
 .footer {
-    background-color: #d7f301; /* Cor de fundo para toda a área do rodapé */
+    background-color: #d7f301;
     text-align: center;
-    padding:  0; /* Espaçamento vertical ao redor da imagem */
+    padding: 0;
     position: relative;
 }
 
@@ -151,27 +157,29 @@ input[disabled] {
     max-width: 100%;
     height: auto;
     display: block;
-    margin: 0 auto; /* Centraliza a imagem */
+    margin: 0 auto;
     border-radius: 10px;
     border-color: #7f00ff;
 }
 
 /* Texto centralizado sobre a imagem */
 .footer::after {
-    content: 'Desenvolvido por Soma Prospecta®'; /* Texto sobre a imagem */
+    content: 'Desenvolvido por Soma Prospecta®';
     position: absolute;
-    bottom: 10px; /* Espaço entre o texto e a borda inferior da imagem */
+    bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
-    color: #000; /* Cor do texto */
-    font-size: 12px; /* Tamanho da fonte */
-    background-color: transparent; /* Fundo com opacidade */
+    color: #000;
+    font-size: 12px;
+    background-color: transparent;
     padding: 5px 10px;
     border-radius: 5px;
 }
-
-/* Fundo se expande em telas maiores, mas mantém a imagem centralizada */
-body {
-    background-color: #d7f301; /* Cor de fundo para preencher toda a tela */
+.google-ads {
+    background-color: #f8f9fa; /* Cor de fundo clara */
+    border: 1px solid #ccc; /* Borda cinza */
+    padding: 10px; /* Espaçamento interno */
+    text-align: center; /* Centraliza o texto */
+    margin-top: 20px; /* Espaçamento acima do bloco de anúncios */
 }
 

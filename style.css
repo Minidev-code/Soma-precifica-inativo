@@ -1,88 +1,177 @@
-/* Faz com que todos os elementos comecem sem espaçamento */
+/* Reset básico */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Define a fonte e a cor de fundo da página */
+/* Estilo do corpo */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #fffb00;
+    font-family: 'Roboto', sans-serif;
+    background-color: #d7f301;
+    font-size: 10px;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-/* Define a largura da área principal e centraliza ela */
+/* Estilo para o container */
 .container {
-    width: 90%;
-    margin: 20px auto;
+    padding: 0px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Estilo para os headers */
+.section-header h1 {
+    font-size: 22px;
     text-align: center;
-}
-
-/* Estilo do título grande (h1) */
-h1 {
-    background-color: #fffb00;
     color: black;
+    background-color: #d7f301;
     padding: 10px;
-    margin-bottom: 5px;
-    font-size: 20px;
-    font-weight: bold;
+    border-radius: 0px;
+    border: 2px solid #d7f301;
+    margin-bottom: 0px;
+    width: 100%;
+}
+.section-header h2 {
+    font-size: 22px;
+    text-align: center;
+    color: #ffffff;
+    background-color: #d7f301;
+    padding: 10px;
+    border-radius: 0px;
+    border: 2px solid #d7f301;
+    margin-bottom: 0px;
+    width: 100%;
 }
 
-/* Estilo das linhas (row) que contêm os campos */
-.row {
+/* Estilo para as linhas do formulário */
+.form-row {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom: px;
+    flex-wrap: nowrap; /* Manterá a estrutura em telas maiores até 992px */
+}
+
+/* Estilo das colunas e campos */
+.form-group {
+    flex: 1;
+    margin-right: 0px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-}
-
-/* Estilo das colunas com texto dentro das linhas */
-.column {
-    flex: 1;
-    background-color: #7f00ff; /* Roxo */
-    color: white;
-    padding: 10px;
     text-align: center;
-    border-radius: 5px;
-    margin-right: 5px;
-    font-size: 14px;
-    font-weight: bold;
 }
 
-/* Estilo dos campos de entrada onde o usuário digita */
+.form-group:last-child {
+    margin-right: 0;
+}
+
+/* Estilo dos rótulos */
+label {
+    padding: 10px;
+    width: 100%;
+    background-color: #7f00ff;
+    font-size: 10px;
+    color: #e0e0e0;
+    margin-bottom: 0px;
+}
+
+/* Estilo dos campos de entrada */
 .campo {
-    flex: 1;
-    padding: 10px;
+    padding: 5px;
+    width: 100%;
+    max-width: 100%;
     text-align: center;
-    border: 2px solid #7f00ff; /* Borda roxa */
-    border-radius: 5px;
-    margin-right: 5px;
+    border: 0px solid #000;
+    border-radius: 0px;
     font-size: 14px;
-    background-color: #fff; /* Fundo branco */
+    background-color: #fff;
     color: black;
 }
 
-/* Quando você clica no campo, ele fica com uma borda diferente */
+/* Estilo ao focar no campo */
 .campo:focus {
     outline: none;
-    border: 2px solid #ffa500; /* Mudar cor da borda ao focar (laranja) */
+    border-color: #ffa500;
 }
 
-/* Estilo para campos desativados (que não podem ser editados) */
+/* Estilo para campos desativados */
 input[disabled] {
-    background-color: #e0e0e0; /* Cor de fundo mais clara */
+    background-color: #e0e0e0;
 }
 
-/* Estilo do rodapé */
+
+
+/* Media queries para telas menores */
+
+/* Até 992px, o layout mantém-se como no desktop */
+@media (max-width: 992px) {
+    .form-row {
+        flex-wrap: wrap; /* Começará a quebrar linhas a partir de 992px */
+    }
+
+    .form-group {
+        flex: 0 0 48%; /* Ajuste leve para que caibam dois campos lado a lado até 768px */
+    }
+}
+
+/* A partir de 768px, o layout será mobile-friendly */
+@media (max-width: 768px) {
+    .form-group {
+        flex: 0 0 100%; /* Os campos ficam em uma única coluna em telas menores que 768px */
+    }
+
+    .section-header h1, .section-header h2 {
+        font-size: 18px;
+        padding: 8px;
+    }
+
+    label {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .campo {
+        font-size: 12px;
+    }
+}
+/* Estilo da imagem no rodapé */
+/* Rodapé com imagem centralizada */
 .footer {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #fffb00;
-    color: black;
-    font-weight: bold;
+    background-color: #d7f301; /* Cor de fundo para toda a área do rodapé */
+    text-align: center;
+    padding:  0; /* Espaçamento vertical ao redor da imagem */
+    position: relative;
 }
 
-/* Estilo do texto pequeno no rodapé */
-.footer p {
-    font-size: 12px;
+.footer img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Centraliza a imagem */
+    border-radius: 10px;
+    border-color: #7f00ff;
 }
+
+/* Texto centralizado sobre a imagem */
+.footer::after {
+    content: 'Desenvolvido por Soma Prospecta®'; /* Texto sobre a imagem */
+    position: absolute;
+    bottom: 10px; /* Espaço entre o texto e a borda inferior da imagem */
+    left: 50%;
+    transform: translateX(-50%);
+    color: #000; /* Cor do texto */
+    font-size: 12px; /* Tamanho da fonte */
+    background-color: transparent; /* Fundo com opacidade */
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/* Fundo se expande em telas maiores, mas mantém a imagem centralizada */
+body {
+    background-color: #d7f301; /* Cor de fundo para preencher toda a tela */
+}
+

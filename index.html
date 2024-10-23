@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
     <div class="container-fluid">
         <header class="section-header">
@@ -17,40 +18,48 @@
         <div class="form-row">
             <div class="form-group">
                 <label for="pretensao">Pretensão renda mensal
-                    <span class="info-icon" title="Informe o valor que você deseja receber.">🛈</span>
+                    <span class="info-icon" title="Informe o valor que você deseja receber.">
+                        <img src="informações.png" alt="Ícone de Informação" class="icon" />
+                    </span>
                 </label>
                 <input class="form-control campo" id="pretensao" type="number" placeholder="R$:">
             </div>
 
             <div class="form-group">
                 <label for="custosFixos">Custos fixos
-                    <span class="info-icon" title="Informe os custos fixos mensais.">🛈</span>
+                    <span class="info-icon" title="Informe os custos fixos mensais.">
+                        <img src="informações.png" alt="Ícone de Informação" class="icon" />
+                    </span>
                 </label>
-                <input class="form-control campo" id="custosFixos" type="number" placeholder="1200">
+                <input class="form-control campo" id="custosFixos" type="number" placeholder="R$">
             </div>
 
             <div class="form-group">
                 <label for="custosVariaveis">Custos variáveis
-                    <span class="info-icon" title="Informe os custos variáveis mensais.">🛈</span>
+                    <span class="info-icon" title="Informe os custos variáveis mensais.">
+                        <img src="informações.png" alt="Ícone de Informação" class="icon" />
+                    </span>
                 </label>
-                <input class="form-control campo" id="custosVariaveis" type="number" placeholder="1000">
+                <input class="form-control campo" id="custosVariaveis" type="number" placeholder="R$">
             </div>
 
             <div class="form-group">
                 <label for="horasTrabalhadas">Horas trabalhadas/mês
-                    <span class="info-icon" title="Informe a quantidade de horas trabalhadas no mês.">🛈</span>
+                    <span class="info-icon" title="Informe a quantidade de horas trabalhadas no mês.">
+                        <img src="informações.png" alt="Ícone de Informação" class="icon" />
+                    </span>
                 </label>
-                <input class="form-control campo" id="horasTrabalhadas" type="number" placeholder="120">
+                <input class="form-control campo" id="horasTrabalhadas" type="number" placeholder="">
             </div>
 
             <div class="form-group">
                 <label for="valorHora">Valor total da hora</label>
-                <input class="form-control campo" id="valorHora" type="text" placeholder="R$ 60,00" disabled>
+                <input class="form-control campo" id="valorHora" type="text" placeholder="R$" disabled>
             </div>
 
             <div class="form-group">
                 <label for="margemLucro">Margem de lucro</label>
-                <input class="form-control campo" id="margemLucro" type="text" placeholder="56,00%" disabled>
+                <input class="form-control campo" id="margemLucro" type="text" placeholder="%" disabled>
             </div>
         </div>
 
@@ -61,26 +70,30 @@
         <div class="form-row">
             <div class="form-group">
                 <label for="valorHoraProjeto">Valor da hora</label>
-                <input class="form-control campo" id="valorHoraProjeto" type="text" placeholder="R$ 60,00" disabled>
+                <input class="form-control campo" id="valorHoraProjeto" type="text" placeholder="R$" disabled>
             </div>
 
             <div class="form-group">
                 <label for="horasDiarias">Horas diárias para execução do projeto
-                    <span class="info-icon" title="Informe quantas horas você trabalhará por dia no projeto.">🛈</span>
+                    <span class="info-icon" title="Informe quantas horas você trabalhará por dia no projeto.">
+                        <img src="informações.png" alt="Ícone de Informação" class="icon" />
+                    </span>
                 </label>
-                <input class="form-control campo" id="horasDiarias" type="number" placeholder="3">
+                <input class="form-control campo" id="horasDiarias" type="number" placeholder="">
             </div>
 
             <div class="form-group">
                 <label for="duracaoProjeto">Duração do projeto em dias
-                    <span class="info-icon" title="Informe a quantidade de dias para concluir o projeto.">🛈</span>
+                    <span class="info-icon" title="Informe a quantidade de dias para concluir o projeto.">
+                        <img src="informações.png" alt="Ícone de Informação" class="icon" />
+                    </span>
                 </label>
-                <input class="form-control campo" id="duracaoProjeto" type="number" placeholder="4">
+                <input class="form-control campo" id="duracaoProjeto" type="number" placeholder="">
             </div>
 
             <div class="form-group">
                 <label for="valorTotalProjeto">Valor total do projeto</label>
-                <input class="form-control campo" id="valorTotalProjeto" type="text" placeholder="R$ 720,00" disabled>
+                <input class="form-control campo" id="valorTotalProjeto" type="text" placeholder="R$0" disabled>
             </div>
         </div>
         <footer class="footer">

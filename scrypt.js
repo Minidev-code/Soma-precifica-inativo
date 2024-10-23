@@ -24,17 +24,26 @@ function calcularValores() {
     const horasDiarias = parseFloat(document.getElementById('horasDiarias').value) || 0;
     const duracaoProjeto = parseFloat(document.getElementById('duracaoProjeto').value) || 0;
 
-    // Cálculo do valor total da hora
+    // Cálculo do valor total da hora, com prevenção de NaN
     const valorHoraTotal = (pretensao + custosFixos + custosVariaveis) / horasTrabalhadas;
-    document.getElementById('valorHora').value = valorHoraTotal.toFixed(2); // Usar valor numérico
+    document.getElementById('valorHora').value = isNaN(valorHoraTotal) ? '0.00' : valorHoraTotal.toFixed(2);
 
-    // Cálculo da margem de lucro
+    // Cálculo da margem de lucro, com prevenção de NaN
     const margemLucro = ((pretensao - (custosFixos + custosVariaveis)) / pretensao) * 100;
-    document.getElementById('margemLucro').value = margemLucro.toFixed(2) + '%';
+    document.getElementById('margemLucro').value = isNaN(margemLucro) ? '0.00%' : margemLucro.toFixed(2) + '%';
 
-    // Cálculo do valor total do projeto
-    const valorTotalProjeto = valorHoraTotal * horasDiarias * duracaoProjeto;
-    document.getElementById('valorTotalProjeto').value = valorTotalProjeto.toFixed(2); // Usar valor numérico
+    // Cálculo do valor total do projeto, usando valorHora atualizado
+    const valorHora = parseFloat(document.getElementById('valorHora').value) || 0;
+    const valorTotalProjeto = valorHora * horasDiarias * duracaoProjeto;
+    document.getElementById('valorTotalProjeto').value = isNaN(valorTotalProjeto) ? '0.00' : valorTotalProjeto.toFixed(2);
+    const valorHoraProjeto = valorHora;
+    document.getElementById('valorHoraProjeto').value = isNaN(valorHoraProjeto) ? '0.00' : valorHoraProjeto.toFixed(2);
+    const campos = ['pretensao', 'custosFixos', 'custosVariaveis', 'horasTrabalhadas', 'horasDiarias', 'duracaoProjeto'];
+    campos.forEach(campoId => {
+        const campo = document.getElementById(campoId);
+        campo.addEventListener('keydown', moverParaProximoCampo); // Muda de campo ao pressionar Enter
+    });
+    
 }
 
 // Função para formatar os campos em tempo real

@@ -54,6 +54,7 @@ body {
     text-align: center;
 }
 
+
 /* Estilo dos rótulos */
 label {
     padding: 10px;
@@ -66,14 +67,21 @@ label {
 
 /* Estilo para o ícone de informação */
 .info-icon {
+    display: inline-block; /* Para garantir que o ícone fique na mesma linha */
+    vertical-align: initial; /* Alinha o ícone ao meio do texto */
+    margin-left: 5px; /* Espaço entre o texto e o ícone */
     display: inline-block;
+    background-image: "ideia";
     margin-left: 10px; /* Espaço entre a label e o ícone */
     cursor: pointer;
     color: #ffffff; /* Cor do ícone */
     font-weight: bold; /* Tamanho do ícone */
     position: relative; /* Para posicionar a tooltip */
 }
-
+icon {
+    width: 20px; /* Defina a largura do ícone */
+    height: 20px; /* Defina a altura do ícone */
+}
 /* Estilo para a tooltip */
 .info-icon:hover::after {
     content: attr(title); /* Exibe o texto do atributo title */
@@ -81,10 +89,10 @@ label {
     bottom: 30px; /* Posiciona a tooltip acima do ícone */
     left: 1rem;
     transform: translateX(-50%); /* Centraliza a tooltip */
-    background-color: rgba(111, 69, 224, 0.9); /* Fundo branco com transparência */
+    background-color: rgba(0, 0, 0, 0.9); /* Fundo branco com transparência */
     border: 1px solid #ccc; /* Borda da tooltip */
-    padding: 5px;
-    border-radius: 4px; /* Borda arredondada */
+    padding: 8px;
+    border-radius: 10px; /* Borda arredondada */
     white-space: nowrap; /* Impede que o texto quebre */
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Sombra para dar destaque */
     z-index: 10; /* Garante que a tooltip fique acima de outros elementos */
@@ -162,7 +170,7 @@ input[disabled] {
     border-color: #7f00ff;
 }
 
-/* Texto centralizado sobre a imagem */
+/* Ajustes para o texto centralizado sobre a imagem */
 .footer::after {
     content: 'Desenvolvido por Soma Prospecta®';
     position: absolute;
@@ -174,12 +182,16 @@ input[disabled] {
     background-color: transparent;
     padding: 5px 10px;
     border-radius: 5px;
-}
-.google-ads {
-    background-color: #f8f9fa; /* Cor de fundo clara */
-    border: 1px solid #ccc; /* Borda cinza */
-    padding: 10px; /* Espaçamento interno */
+    width: 90%; /* Limita a largura do texto */
     text-align: center; /* Centraliza o texto */
-    margin-top: 20px; /* Espaçamento acima do bloco de anúncios */
 }
+
+/* Ocultar o texto em dispositivos móveis */
+@media (max-width: 768px) {
+    .footer::after {
+        content: ''; /* Oculta o texto */
+        display: none; /* Remove a exibição */
+    }
+}
+
 

@@ -1,0 +1,133 @@
+
+Documentação da Calculadora de Precificação
+
+Estrutura do HTML
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+- DOCTYPE: Declara que o documento é um HTML5.
+- lang: Define o idioma como português do Brasil.
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Precificação</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+- meta charset: Define o conjunto de caracteres como UTF-8.
+- meta viewport: Responsável pela responsividade, adaptando a largura do site ao tamanho da tela.
+- title: Título da página que aparece na aba do navegador.
+- link: Importa a fonte Roboto e o CSS do Bootstrap para estilização.
+
+Corpo do Documento
+
+<body>
+    <div class="container-fluid">
+- div.container-fluid: Usado para criar um contêiner que ocupa 100% da largura da tela.
+
+Seções do Formulário
+
+Cabeçalhos: Cada seção do formulário é precedida por um cabeçalho que descreve a funcionalidade:
+<header class="section-header">
+    <h1>CÁLCULO DO VALOR HORA</h1>
+</header>
+
+Campos de Entrada: O formulário contém vários campos de entrada para coleta de dados:
+<div class="form-group">
+    <label for="pretensao">Pretensão renda mensal</label>
+    <input class="form-control campo" id="pretensao" type="number" placeholder="R$:">
+</div>
+- label: Descreve o campo de entrada.
+- input: Campos onde o usuário insere os dados. Cada campo possui um id único para identificação e manipulação no JavaScript.
+
+Informações de Ajuda: Ícones de informação (info-icon) fornecem dicas ao usuário.
+
+Resultados dos Cálculos
+
+<div class="form-group">
+    <label for="valorHora">Valor total da hora</label>
+    <input class="form-control campo" id="valorHora" type="text" placeholder="R$ 60,00" disabled>
+</div>
+- Campos que exibem resultados dos cálculos são desativados (disabled) para evitar edições manuais.
+
+Rodapé e Anúncios
+
+<footer class="footer">
+    <img src="soma.png" alt="Imagem descritiva" class="img-fluid">
+</footer>
+- footer: Contém uma imagem e texto que credita a autoria.
+
+Anúncios do Google
+
+<div class="google-ads">
+    <!-- Código do anúncio do Google vai aqui -->
+</div>
+- Espaço reservado para anúncios do Google.
+
+Scripts JavaScript
+
+<script src="scrypt.js"></script>
+<script>
+    // Código JavaScript para funcionalidades interativas
+</script>
+- Os scripts são usados para implementar a lógica de cálculos e a manipulação de eventos no formulário.
+
+CSS
+
+Reset e Estilo Básico
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+- Reset básico: Remove margens e preenchimentos padrão.
+
+Estilos Gerais
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #d7f301;
+    font-size: 10px;
+    height: 100%;
+    width: 100%;
+}
+- Define a fonte, cor de fundo e tamanho de fonte do corpo.
+
+Estilos do Formulário
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+- Flexbox: Usado para organizar os campos de entrada de forma responsiva.
+
+Estilos para a Tooltip
+
+.info-icon:hover::after {
+    content: attr(title);
+    /* Estilos da tooltip */
+}
+- Exibe uma tooltip ao passar o mouse sobre os ícones de informação.
+
+JavaScript
+
+Funções Principais
+
+function calcularValores() {
+    // Lógica para calcular valores com base nas entradas do usuário
+}
+- Função principal que realiza os cálculos de valor hora e valor total do projeto.
+
+window.onload = function () {
+    carregarDoCache();
+    // Eventos para formatar campos e mover para o próximo
+};
+- Carrega os valores do cache ao abrir a página e aplica formatação aos campos.
+
+Considerações Finais
+- Este código fornece uma interface para calcular a precificação de projetos, permitindo ao usuário inserir suas despesas e calcular valores de forma interativa.
+- O uso do localStorage permite que os dados do usuário sejam salvos e recuperados ao recarregar a página, melhorando a experiência do usuário.
